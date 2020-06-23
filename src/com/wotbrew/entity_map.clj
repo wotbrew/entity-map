@@ -197,8 +197,10 @@
 (defn wrap
   "Given a map of id -> m returns a new EntityMap. Extremely cheap."
   [m]
-  (if (empty? m)
-    empty-entity-map
+  (cond
+    (empty? m) empty-entity-map
+    (instance? EntityMap m) (with-meta m nil)
+    :else
     (->EntityMap m nil nil nil nil)))
 
 (defn wrap-coll
