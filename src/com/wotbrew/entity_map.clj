@@ -207,7 +207,8 @@
   [f coll]
   (-> (transient {})
       (as-> m (reduce (fn [m x] (assoc! m (f x) x)) m coll))
-      (persistent!)))
+      (persistent!)
+      wrap))
 
 (defmethod print-method EntityMap
   [em writer]
